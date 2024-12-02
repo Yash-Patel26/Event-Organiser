@@ -1,0 +1,100 @@
+{% extends "coOrganizer_layout.html" %}
+<!--title part-->
+{% block title %}Co-Organizer Dashboard{% endblock %}
+<!--head part-->
+{% block head %} {{ super() }}
+<style>
+  #img {
+    height: 250px;
+    border-top-right-radius: 25px;
+  }
+
+  .card-title {
+    text-align: center;
+    font-family: Bahnschrift SemiBold;
+    font-size: 25px;
+  }
+  .card {
+    border-bottom-left-radius: 25px;
+    border-top-right-radius: 25px;
+  }
+
+  @media (min-width: 300px) and (max-width: 350px) {
+    #card1 {
+      margin-top: 20px;
+    }
+  }
+  /*meduim mobile phones*/
+  @media (min-width: 350px) and (max-width: 400px) {
+    #card1 {
+      margin-top: 20px;
+    }
+  }
+  /*large mobile phones*/
+  @media (min-width: 400px) and (max-width: 500px) {
+    #card1 {
+      margin-top: 20px;
+    }
+  }
+  /*tablet*/
+  /*tablet mode*/
+  @media (min-width: 600px) and (max-width: 800px) {
+    .card-title {
+      font-size: 20px;
+    }
+  }
+  @media (min-width: 800px) and (max-width: 1050px) {
+  }
+</style>
+{% endblock %}
+<!--content part-->
+{% block content %}
+<div class="container" style="margin-top: 70px">
+  <div class="row" style="justify-content: center">
+    <div class="col-sm-4">
+      <div class="card animate__animated animate__zoomInLeft" id="card1">
+        <img
+          src="{{url_for('static', filename='event_assign.png')}}"
+          class="card-img-top"
+          id="img"
+          alt="image1"
+        />
+        <div class="card-body">
+          <h3 class="card-title">
+            <a
+              href="/coOrganizer_view_event"
+              style="color: black; text-decoration: none"
+              >Events Assigned</a
+            >
+          </h3>
+          <h3 style="text-align: center; margin-top: 20px; margin-bottom: 20px">
+            {{data[0]}}
+          </h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="card animate__animated animate__zoomInLeft" id="card1">
+        <img
+          src="{{url_for('static', filename='judge.png')}}"
+          class="card-img-top"
+          id="img"
+          alt="image1"
+        />
+        <div class="card-body">
+          <h3 class="card-title">
+            <a href="/view_judge" style="color: black; text-decoration: none"
+              >Judges Added</a
+            >
+          </h3>
+          <h3 style="text-align: center; margin-top: 20px; margin-bottom: 20px">
+            {{data[1]}}
+          </h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br /><br />
+
+{% endblock %}

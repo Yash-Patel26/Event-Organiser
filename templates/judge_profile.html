@@ -1,0 +1,97 @@
+{% extends "judge_layout.html" %}
+<!--title part-->
+{% block title %}My Profile{% endblock %}
+<!--head part-->
+{% block head %} {{ super() }}
+<style>
+  .card {
+    margin-top: 40px;
+  }
+
+  #button1 {
+    width: 200px;
+    background-color: #1565c0;
+    color: white;
+    margin-bottom: 20px;
+    border-radius: 50px;
+  }
+  #adm-tab {
+    font-family: Bahnschrift SemiBold;
+    text-decoration: none;
+    color: #7e57c2;
+  }
+  .card-title {
+    text-align: center;
+    font-family: Bahnschrift SemiBold;
+    font-size: 25px;
+  }
+  #img1 {
+    height: 400px;
+  }
+  h2 {
+    text-align: center;
+    font-family: Bahnschrift;
+  }
+  p {
+    text-align: center;
+    font-family: Bahnschrift;
+    font-size: 23px;
+  }
+  h4 {
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #000;
+    line-height: 0.1em;
+    margin: 10px 0 20px;
+    font-family: Bahnschrift SemiBold;
+  }
+
+  h4 span {
+    background: #fff;
+    padding: 0 10px;
+  }
+</style>
+{% endblock %}
+<!--content part-->
+{% block content %}
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-sm-5">
+      <div class="card">
+        <img
+          src="static/pers.jpg"
+          class="card-img-top"
+          alt="profile"
+          style="height: 270px"
+        />
+        <div class="card-body">
+          <p class="card-text"></p>
+          <p style="margin-bottom: 10px">
+            <i class="fa fa-user" aria-hidden="true"></i
+            >&nbsp;&nbsp;{{session['judge_name']}}
+          </p>
+          <p style="margin-bottom: 8px">
+            <i class="fa fa-phone" aria-hidden="true"></i
+            >&nbsp;&nbsp;{{session['judge_phone']}}
+          </p>
+          <p>
+            <i class="fa fa-envelope" aria-hidden="true"></i
+            >&nbsp;&nbsp;{{session['judge_email']}}
+          </p>
+          <br />
+          <h4><span> Click Here To Update</span></h4>
+          <br />
+          <div style="text-align: center">
+            <a href="/judge_profile_update"
+              ><button type="button" class="btn btn-primary" id="button1">
+                Update
+              </button></a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br /><br />
+  {% endblock %}
+</div>

@@ -1,0 +1,146 @@
+{% extends "coOrganizer_layout.html" %}
+<!--title part-->
+{% block title %}Send Alert{% endblock %}
+<!--head part-->
+{% block head %} {{ super() }}
+<style>
+  .card {
+    margin-top: 50px;
+  }
+
+  #button1 {
+    margin-top: 20px;
+    width: 150px;
+    border-radius: 50px;
+    background: url("../static/back1.jpg") no-repeat;
+    background-position: center;
+    background-size: cover;
+    color: white;
+    margin-bottom: 20px;
+  }
+
+  h4 {
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #000;
+    line-height: 0.1em;
+    margin: 10px 0 20px;
+    font-family: Bahnschrift SemiBold;
+    margin-top: 15px;
+    margin-bottom: 35px;
+  }
+
+  h4 span {
+    background: #fff;
+    padding: 0 10px;
+  }
+  #google {
+    text-transform: none;
+    width: 300px;
+    border-radius: 50px;
+    background: url("static/back1.jpg") no-repeat;
+    background-position: center;
+    background-size: cover;
+    color: white;
+  }
+  .card-header {
+    background: url("static/back1.jpg") no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 70px;
+    font-family: Bahnschrift SemiBold;
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    font-size: 28px;
+  }
+  @media (min-width: 300px) and (max-width: 350px) {
+    #google {
+      width: 200px;
+    }
+  }
+</style>
+{% endblock %}
+<!--content part-->
+{% block content %}
+<div
+  style="
+    background: url('../static/background.avif') no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 900px;
+  "
+>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-sm-5">
+        <div class="card">
+          <div class="card-header">
+            <p style="margin-top: 6px">Send Alert</p>
+          </div>
+          <div class="card-body">
+            <div class="container mb-2">
+              <div class="row justify-content-center">
+                <form action="/sendeventalert/{{data2}}" method="POST">
+                  <div class="mb-3" style="margin-top: 30px">
+                    <label class="form-label">Subject</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="subject"
+                      required
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Message</label>
+                    <input
+                      name="message"
+                      type="text"
+                      class="form-control"
+                      required
+                    />
+                  </div>
+                  <div class="row justify-content-center">
+                    <button type="submit" id="button1" class="btn btn-primarys">
+                      Submit
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <div class="container mb-2">
+              <div class="row justify-content-center">
+                {% if data %}
+                <div class="table-responsive" style="text-align: center">
+                  <table class="table table-striped table-bordered">
+                    <thead class="thead-dark">
+                      <tr>
+                        <th scope="col">Participant Mail</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for i in data %}
+                      <tr>
+                        <td>{{i}}</td>
+                      </tr>
+                      {% endfor %} {% else %}
+                      <h2 class="text-center mt-5 fw-bold text-uppercase">
+                        No Registrations
+                      </h2>
+                      {% endif %}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endblock %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

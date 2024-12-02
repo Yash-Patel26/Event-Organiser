@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% block head %}
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <title>{% block title %}{% endblock %} - EventX</title>
+    {% endblock %}
+    <style>
+      body {
+        font-family: "Roboto" sans-serif;
+        background-color: #f2f3f4;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        text-decoration: none;
+        list-style: none;
+      }
+      #text1 {
+        color: #fff;
+        margin: 0;
+        text-transform: uppercase;
+        font-size: 20.5px;
+        font-weight: 750;
+      }
+      #text1 span {
+        color: #42a5f5;
+      }
+      #sidebarCollapse {
+        color: white;
+        width: 45px;
+      }
+      #sidebarCollapse:hover {
+        background-color: #1976d2;
+      }
+      header {
+        font-size: 28px;
+        color: white;
+        text-align: center;
+        line-height: 70px;
+        background: #212121;
+        user-select: none;
+        font-weight: 700;
+        font-family: Bahnschrift;
+      }
+      .sidenav {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: #2f323a;
+        overflow-x: hidden;
+        transition: all 0.5s ease;
+        box-shadow: 7px 2px 5px 0px rgba(0, 0, 0, 0.75);
+      }
+
+      .sidenav .closebtn {
+        position: absolute;
+        top: 16px;
+        right: 10px;
+        transition: all 0.5s;
+        cursor: pointer;
+      }
+      #close {
+        color: white;
+        font-size: 15px;
+        transition: all 0.5s;
+      }
+      #close:hover {
+        background-color: red;
+        transition: all 0.5s;
+      }
+      .sidenav ul a {
+        display: block;
+        width: 100%;
+        line-height: 65px;
+        text-decoration: none;
+        font-size: 20px;
+        padding-left: 40px;
+        box-sizing: border-box;
+        transition: 0.4s;
+      }
+      ul li:hover a {
+        padding-left: 50px;
+        text-decoration: none;
+      }
+      .sidenav ul a:hover {
+        background-color: #1976d2;
+      }
+      .sidenav ul a i {
+        margin-right: 7px;
+      }
+      .sidenav ul a span {
+        margin-right: 12px;
+      }
+
+      @media screen and (max-height: 450px) {
+        .sidenav {
+          padding-top: 15px;
+        }
+        .sidenav a {
+          font-size: 18px;
+        }
+      }
+      ul li .a,
+      #navbarDropdown {
+        color: white;
+        font-size: 16px;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+      }
+
+      .card-header {
+        background-color: #1976d2;
+        text-align: center;
+        font-weight: 500;
+        color: white;
+        font-size: 23px;
+        letter-spacing: 0.3px;
+        font-family: Bahnschrift SemiBold;
+      }
+
+      .card {
+        border: solid 1px white;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 10px;
+      }
+    </style>
+  </head>
+  <body>
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+    messages %} {% for cat,msg in messages %} {% if cat == "error" %}
+    <script class="text-uppercase">
+      swal({
+        title: "Error!",
+        text: "{{msg|upper}}",
+        icon: "error",
+        button: "OK"
+      });
+    </script>
+    {% else %}
+    <script>
+      swal({
+        title: "Success!",
+        text: "{{msg|upper}}",
+        icon: "success",
+        button: "OK",
+        timer: 3500
+      });
+    </script>
+    {% endif %} {% endfor %} {% endif %} {% endwith %}
+    <div id="mySidenav" class="sidenav">
+      <header>Judge</header>
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"
+        ><button class="btn btn-infos" id="close">
+          <i class="fa fa-times"></i></button
+      ></a>
+
+      <ul class="list-unstyled components mb-5">
+        <li>
+          <a href="/judgedash" class="a"
+            ><span class="fa fa-home"></span>Home</a
+          >
+        </li>
+        <li>
+          <a href="/judge_event" class="a"
+            ><span class="fa fa-home"></span>Judge Event</a
+          >
+        </li>
+        <li>
+          <a href="/change_pass_judge" class="a"
+            ><span class="fa fa-key"></span>Change Password</a
+          >
+        </li>
+
+        <li>
+          <a href="/judge_profile" class="a"
+            ><span class="fa fa-user"></span>My Profile</a
+          >
+        </li>
+        <li>
+          <a href="/logout" class="a"
+            ><span class="fa fa-sign-out"></span>Logout</a
+          >
+        </li>
+      </ul>
+    </div>
+
+    <nav
+      class="navbar navbar-expand-lg navbar-light"
+      style="background-color: #000000; height: 60px"
+      id="navbar"
+    >
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/judgedash"
+          ><h3 id="text1">Judge <span>Dashboard</span></h3></a
+        >
+
+        <button
+          type="button"
+          id="sidebarCollapse"
+          class="btn btn-darks me-auto"
+          onclick="openNav()"
+        >
+          <i class="fa fa-bars" aria-hidden="true"></i>
+        </button>
+      </div>
+    </nav>
+    <div id="content">{% block content %} {% endblock %}</div>
+    <div id="footer">{% block footer %} {% endblock %}</div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      function openNav() {
+        document.getElementById("mySidenav").style.width = "275px";
+        document.getElementById("main").style.marginLeft = "260px";
+        document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+      }
+      function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+        document.getElementById("main").style.marginLeft = "0";
+        document.body.style.backgroundColor = "white";
+      }
+    </script>
+  </body>
+</html>

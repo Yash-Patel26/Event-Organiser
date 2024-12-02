@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% block head %}
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script
+      src="https://kit.fontawesome.com/1d53956076.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>{% block title %}{% endblock %} - EventX</title>
+    {% endblock %}
+  </head>
+  <body>
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+    messages %} {% for cat,msg in messages %} {% if cat == "error" %}
+    <script class="text-uppercase">
+      swal({
+        title: "Error!",
+        text: "{{msg|upper}}",
+        icon: "error",
+        button: "OK"
+      });
+    </script>
+    {% else %}
+    <script>
+      swal({
+        title: "Success!",
+        text: "{{msg|upper}}",
+        icon: "success",
+        button: "OK",
+        timer: 3500
+      });
+    </script>
+    {% endif %} {% endfor %} {% endif %} {% endwith %}
+    <div id="content">{% block content %}{% endblock %}</div>
+    <div id="footer">{% block footer %} {% endblock %}</div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

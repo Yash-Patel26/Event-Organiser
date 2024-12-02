@@ -1,0 +1,206 @@
+{% extends "layout.html" %}
+<!--title part-->
+{% block title %}Participant Registration{% endblock %}
+<!--head part-->
+{% block head %} {{ super() }}
+<style>
+  .card {
+    margin-top: 50px;
+  }
+
+  #button1 {
+    margin-top: 20px;
+    width: 150px;
+    border-radius: 50px;
+    background: url("static/back1.jpg") no-repeat;
+    background-position: center;
+    background-size: cover;
+    color: white;
+    margin-bottom: 20px;
+  }
+
+  h4 {
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #000;
+    line-height: 0.1em;
+    margin: 10px 0 20px;
+    font-family: Bahnschrift SemiBold;
+    margin-top: 15px;
+    margin-bottom: 35px;
+  }
+
+  h4 span {
+    background: #fff;
+    padding: 0 10px;
+  }
+  #google {
+    text-transform: none;
+    width: 300px;
+    border-radius: 50px;
+    background: url("static/back1.jpg") no-repeat;
+    background-position: center;
+    background-size: cover;
+    color: white;
+  }
+  .card-header {
+    background: url("static/back1.jpg") no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 70px;
+    font-family: Bahnschrift SemiBold;
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    font-size: 28px;
+  }
+  @media (min-width: 300px) and (max-width: 350px) {
+    #google {
+      width: 200px;
+    }
+  }
+</style>
+{% endblock %}
+<!--content part-->
+{% block content %}
+<div
+  style="
+    background: url('../static/background.avif') no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+  "
+>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-sm-5">
+        <div class="card">
+          <div class="card-header">
+            <p style="margin-top: 6px">Participant Registration</p>
+          </div>
+          <div class="card-body">
+            <div class="container mb-2">
+              <div class="row justify-content-center">
+                <form action="/participant_register" method="POST">
+                  <div class="mb-3" style="margin-top: 30px">
+                    <label class="form-label">Name</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="name"
+                      required
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Email </label>
+                    <input
+                      type="email"
+                      class="form-control"
+                      name="email"
+                      required
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Phone</label>
+                    <input
+                      type="tel"
+                      class="form-control"
+                      name="phone"
+                      maxlength="10"
+                      minlength="10"
+                      required
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Category</label>
+                    <select class="form-select" name="category" required>
+                      <option selected>Open this select menu</option>
+                      <option value="Primary">Primary</option>
+                      <option value="High School">High School</option>
+                      <option value="PU">PU</option>
+                      <option value="Graduate">Graduate</option>
+                    </select>
+                  </div>
+                  <div class="mb-3">
+                    <label class="foPUm-label"
+                      >Password &nbsp;
+                      <a data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <i
+                          class="fa fa-question-circle"
+                          aria-hidden="true"
+                        ></i> </a
+                    ></label>
+                    <input
+                      type="password"
+                      class="form-control"
+                      name="password"
+                      required
+                    />
+                  </div>
+                  <div class="row justify-content-center">
+                    <button type="submit" id="button1" class="btn btn-primarys">
+                      Submit
+                    </button>
+                  </div>
+                </form>
+                <!-- Button trigger modal -->
+
+                <!-- Modal -->
+                <div
+                  class="modal fade"
+                  id="exampleModal"
+                  tabindex="-1"
+                  aria-labelledby="exampleModalLabel"
+                  aria-hidden="true"
+                >
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5
+                          class="modal-title"
+                          id="exampleModalLabel"
+                          style="font-family: Bahnschrift SemiBold"
+                        >
+                          Password Rules
+                        </h5>
+                        <button
+                          type="button"
+                          class="btn-close"
+                          data-bs-dismiss="modal"
+                          aria-label="Close"
+                        ></button>
+                      </div>
+                      <div class="modal-body" style="text-align: left">
+                        Minimum Length Must Be 8.Must Contain a Capital
+                        Letter.Must Contain a Number. Must Contain Symbol _ or @
+                        or $.Must Not Contain white Spaces.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div style="text-align: center; margin-top: 10px">
+              <p>
+                Already Have An Account?
+                <a href="/participantlog" style="text-decoration: none"
+                  >Login</a
+                >
+              </p>
+            </div>
+            <div class="container">
+              <a
+                style="text-decoration: none; color: #7e57c2; font-weight: bold"
+                class="col-6"
+                href="/"
+                ><i class="fas fa-arrow-left"></i> Back</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% endblock %}
+</div>

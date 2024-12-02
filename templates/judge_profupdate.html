@@ -1,0 +1,100 @@
+{% extends "judge_layout.html" %}
+<!--title part-->
+{% block title %}Update Profile{% endblock %}
+<!--head part-->
+{% block head %} {{ super() }}
+<style>
+  .card {
+    margin-top: 40px;
+  }
+
+  #button1 {
+    margin-top: 20px;
+    width: 190px;
+    border-radius: 50px;
+    background-color: #1565c0;
+    color: white;
+    margin-bottom: 20px;
+  }
+  #adm-tab {
+    font-family: Bahnschrift SemiBold;
+    text-decoration: none;
+    color: #7e57c2;
+  }
+  .card-title {
+    text-align: center;
+    font-family: Bahnschrift SemiBold;
+    font-size: 25px;
+  }
+  h4 {
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #000;
+    line-height: 0.1em;
+    margin: 10px 0 20px;
+    font-family: Bahnschrift SemiBold;
+  }
+
+  h4 span {
+    background: #fff;
+    padding: 0 10px;
+  }
+</style>
+{% endblock %}
+<!--content part-->
+{% block content %}
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-header">Update Profile</div>
+        <div class="card-body">
+          <div class="container">
+            <form method="POST" action="/update_judge_profile/{{data.id}}">
+              <div class="mb-3" style="margin-top: 10px">
+                <label class="form-label"> Name </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="name"
+                  value="{{data.name}}"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  name="email"
+                  value="{{data.email}}"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Phone</label>
+                <input
+                  type="tel"
+                  class="form-control"
+                  name="phno"
+                  minlength="10"
+                  maxlength="10"
+                  value="{{data.phone}}"
+                  required
+                />
+              </div>
+              <div class="row justify-content-center">
+                <button type="submit" id="button1" class="btn btn-primarys">
+                  Update
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br /><br />
+{% endblock %}

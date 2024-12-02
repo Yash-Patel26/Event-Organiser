@@ -1,0 +1,411 @@
+{% extends "layout.html" %}
+<!--title part-->
+{% block title %}Home{% endblock %}
+<!--head part-->
+{% block head %} {{ super() }}
+<style>
+  .navbar-brand {
+    font-family: Bahnschrift SemiBold;
+    font-size: 22px;
+  }
+  #nav {
+    font-family: Bahnschrift SemiBold;
+    font-size: 17px;
+  }
+  #navbarDropdown {
+    font-family: Bahnschrift SemiBold;
+    font-size: 17px;
+  }
+  ul li a {
+    text-decoration: none;
+    font-weight: 450;
+    letter-spacing: 1px;
+    padding: 2px 15px;
+    transition: 0.3s;
+    font-size: 17px;
+    margin-right: 20px;
+  }
+  .dropdown-menu {
+    width: 150px;
+  }
+  #img {
+    width: 100%;
+    height: 450px;
+    object-fit: fill;
+  }
+  .card {
+    border: solid 1px white;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 10px;
+    height: 340px;
+  }
+  .card-text {
+    font-family: Bahnschrift;
+    margin-top: 15px;
+    font-weight: lighter;
+  }
+  .media-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    margin-top: 10px;
+  }
+
+  .media-icons a {
+    position: relative;
+    font-size: 28px;
+    transition: 0.3s;
+    transition-property: transform;
+  }
+
+  .media-icons a:not(:last-child) {
+    margin-right: 50px;
+  }
+
+  .media-icons a:hover {
+    transform: scale(1.5);
+  }
+  .modal-title {
+    font-family: Bahnschrift SemiBold;
+    font-size: 26px;
+    color: white;
+  }
+  .modal-header {
+    background: url("static/back1.jpg") no-repeat;
+    background-position: center;
+    background-size: cover;
+    text-align: center;
+  }
+  label {
+    font-family: Bahnschrift SemiBold;
+  }
+  #submit_form {
+    margin-top: 10px;
+    border-radius: 50px;
+    margin-bottom: 10px;
+    background: url("static/back1.jpg") no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+  @media (min-width: 300px) and (max-width: 350px) {
+    .card {
+      margin-top: 20px;
+    }
+  }
+  /*meduim mobile phones*/
+  @media (min-width: 350px) and (max-width: 400px) {
+    .card {
+      margin-top: 20px;
+    }
+  }
+  /*large mobile phones*/
+  @media (min-width: 400px) and (max-width: 500px) {
+    .card {
+      margin-top: 20px;
+    }
+  }
+  /*tablet*/
+
+  /*tablet mode*/
+  @media (min-width: 600px) and (max-width: 800px) {
+    .card-title {
+      font-size: 20px;
+    }
+  }
+  @media (min-width: 800px) and (max-width: 1050px) {
+  }
+</style>
+{% endblock %}
+<!--content part-->
+{% block content %}
+<nav
+  class="navbar navbar-expand-lg navbar-dark"
+  style="background-color: #1a237e"
+>
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#"
+      ><i class="fa fa-calendar"></i>&nbsp;&nbsp;EventX</a
+    >
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/" id="nav"
+            ><i class="fa fa-home" aria-hidden="true"></i>&nbsp;Home</a
+          >
+        </li>
+        {% if 'admin' in session %}
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle active"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <i class="fa fa-participant"></i
+            >&nbsp;&nbsp;{{session['admin_name']}}
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li style="margin-top: 5px">
+              <a class="dropdown-item" href="/admin_dash"
+                ><i class="fa fa-sign-in"></i>&nbsp;&nbsp;Dashboard</a
+              >
+            </li>
+            <li><hr class="dropdown-divider" /></li>
+            <li>
+              <a class="dropdown-item" href="/logout"
+                ><i class="fa fa-participant-plus"></i>&nbsp;&nbsp;Logout</a
+              >
+            </li>
+          </ul>
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/alllog" id="nav"
+            ><i class="fa fa-user" aria-hidden="true"></i>&nbsp;Login
+          </a>
+        </li>
+        {% endif %}
+        <li class="nav-item">
+          <a
+            class="nav-link active"
+            data-bs-toggle="modal"
+            href="#exampleModalToggle"
+            role="button"
+            id="nav"
+            ><i
+              class="fa fa-phone"
+              aria-hidden="true"
+              style="transform: rotate(90deg)"
+            ></i
+            >&nbsp;Contact
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div
+  id="carouselExampleDark"
+  class="carousel carousel-dark slide"
+  data-bs-ride="carousel"
+>
+  <div class="carousel-indicators">
+    <button
+      type="button"
+      data-bs-target="#carouselExampleDark"
+      data-bs-slide-to="0"
+      class="active"
+      aria-current="true"
+      aria-label="Slide 1"
+    ></button>
+    <button
+      type="button"
+      data-bs-target="#carouselExampleDark"
+      data-bs-slide-to="1"
+      aria-label="Slide 2"
+    ></button>
+    <button
+      type="button"
+      data-bs-target="#carouselExampleDark"
+      data-bs-slide-to="2"
+      aria-label="Slide 3"
+    ></button>
+  </div>
+  <div class="carousel-inner" style="height: 450px">
+    <div class="carousel-item active" data-bs-interval="10000">
+      <img src="static/ca1.jpg" class="d-block w-100" alt="station" id="img" />
+      <div class="carousel-caption d-none d-md-block">
+        <h5></h5>
+        <p></p>
+      </div>
+    </div>
+    <div class="carousel-item" data-bs-interval="2000">
+      <img src="static/ca2.jpg" class="d-block w-100" alt="train" id="img" />
+      <div class="carousel-caption d-none d-md-block">
+        <h5></h5>
+        <p></p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img
+        src="static/ca3.jpg"
+        class="d-block w-100"
+        alt="passenger"
+        id="img"
+      />
+      <div class="carousel-caption d-none d-md-block">
+        <h5></h5>
+        <p></p>
+      </div>
+    </div>
+  </div>
+  <button
+    class="carousel-control-prev"
+    type="button"
+    data-bs-target="#carouselExampleDark"
+    data-bs-slide="prev"
+  >
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button
+    class="carousel-control-next"
+    type="button"
+    data-bs-target="#carouselExampleDark"
+    data-bs-slide="next"
+  >
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+<br />
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="card">
+        <div class="card-body">
+          <div style="text-align: center">
+            <img src="static/about.jpg" class="card-img-top" height="200px" />
+          </div>
+
+          <p class="card-text">
+            With a name like Event, it has to be good !! We're here with the
+            platform providing the virtuous strategies to host a event.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-4">
+      <div class="card">
+        <div class="card-body">
+          <div style="text-align: center">
+            <img src="static/mission.jpg" class="card-img-top" height="200px" />
+          </div>
+          <p class="card-text">
+            Providing the customers with convenient and adequate methods of
+            event management.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-4">
+      <div class="card">
+        <div class="card-body">
+          <div style="text-align: center">
+            <img src="static/contact.png" class="card-img-top" height="200px" />
+          </div>
+          <p class="card-text" style="text-align: center; font-size: 20px">
+            Contact Us
+          </p>
+          <div class="media-icons">
+            <a href="" target="_blank" style="color: #211f1f"
+              ><i class="fa fa-github"></i
+            ></a>
+            <a href="" target="_blank" style="color: #0d47a1"
+              ><i class="fa fa-linkedin"></i
+            ></a>
+
+            <a href="" target="_blank"><i class="fa fa-twitter"></i></a>
+            <a href="" target="_blank" style="color: #e53935"
+              ><i class="fa fa-instagram"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br /><br />
+<div
+  class="modal fade"
+  id="exampleModalToggle"
+  aria-hidden="true"
+  aria-labelledby="exampleModalToggleLabel"
+  tabindex="-1"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalToggleLabel">Contact Us</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <p>
+          Please write to <b>pranithrao3@gmail.com</b> and we will try to solve
+          your query as soon as possible.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<nav
+  class="navbar navbar-expand-lg navbar-light"
+  style="background-color: #1a237e"
+>
+  <div
+    class="container-md"
+    style="display: block; text-align: center; line-height: 10px"
+  >
+    <p
+      class="navbar-brand mx-auto"
+      style="color: white; margin-top: 10px; font-size: 25px; user-select: none"
+    >
+      EventX
+    </p>
+    <p style="color: white; text-transform: uppercase; user-select: none">
+      We organize events with
+      <span style="font-size: 130%; color: red">&hearts; </span>
+      <!-- <a
+        style="color: white"
+        target="_blank"
+        href="https://www.linkedin.com/in/adithya-l-7618241a9/"
+        >Adithya</a
+      >
+      <a
+        style="color: white"
+        target="_blank"
+        href="https://www.linkedin.com/in/harshith-kumar-bb8947178/"
+        >Harshith</a
+      >
+      &
+      <a
+        style="color: white"
+        target="_blank"
+        href="https://www.linkedin.com/in/pranith-rao-036a821a5/"
+        >Pranith</a
+      > -->
+    </p>
+  </div>
+</nav>
+<script>
+  var submitButton = document.getElementById("submit_form");
+  var form = document.getElementById("email_form");
+  form.addEventListener("submit", function (e) {
+    setTimeout(function () {
+      submitButton.value = "Sending...";
+      submitButton.disabled = true;
+    }, 1);
+  });
+</script>
+{% endblock %}

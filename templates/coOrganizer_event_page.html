@@ -1,0 +1,153 @@
+{% extends "coOrganizer_layout.html" %}
+<!--title part-->
+{% block title %}{{data['name']}}{% endblock %}
+<!--head part-->
+{% block head %} {{ super() }}
+<style>
+  .card {
+    margin-top: 40px;
+  }
+
+  #button1 {
+    width: 200px;
+    background-color: #1565c0;
+    color: white;
+    margin-bottom: 20px;
+    border-radius: 50px;
+  }
+  #adm-tab {
+    font-family: Bahnschrift SemiBold;
+    text-decoration: none;
+    color: #7e57c2;
+  }
+  .card-title {
+    text-align: center;
+    font-family: Bahnschrift SemiBold;
+    font-size: 25px;
+  }
+  #img1 {
+    height: 400px;
+  }
+  h2 {
+    text-align: center;
+    font-family: Bahnschrift;
+  }
+  p {
+    text-align: center;
+    font-family: Bahnschrift;
+    font-size: 23px;
+  }
+  h4 {
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #000;
+    line-height: 0.1em;
+    margin: 10px 0 20px;
+    font-family: Bahnschrift SemiBold;
+  }
+
+  h4 span {
+    background: #fff;
+    padding: 0 10px;
+  }
+</style>
+{% endblock %}
+<!--content part-->
+{% block content %}
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-sm-5">
+      <div class="card">
+        <img
+          src="../static/event.svg"
+          class="card-img-top"
+          alt="profile"
+          style="height: 270px; margin-top: 20px"
+        />
+        <div class="card-body">
+          <p class="card-text"></p>
+          <p style="margin-bottom: 10px">Event Name:&nbsp;{{data['name']}}</p>
+          <p style="margin-bottom: 8px">
+            Description:&nbsp;{{data['description']}}
+          </p>
+          <p>
+            <i class="fa fa-clock-o" aria-hidden="true"></i
+            >&nbsp;&nbsp;{{data['time']}}
+          </p>
+          <p>
+            <i class="fa fa-calendar-check-o" aria-hidden="true"></i
+            >&nbsp;&nbsp;{{data['date']}}
+          </p>
+          <p style="margin-bottom: 8px">
+            Location:&nbsp;{{data['location']}}
+          </p>
+          <p>Category:&nbsp;{{data['category']}}</p>
+          <p>Added By:&nbsp;{{data['organizer']}}</p>
+          {%if not data2%}
+          <p style="color: red; text-transform: uppercase">
+            Judges yet to be added
+          </p>
+          {%else%}
+          <div class="table-responsive" style="text-align: center">
+            <table class="table table-striped table-bordered">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">Judge</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for i in data2 %}
+                <tr>
+                  <td>{{i.name}}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          {%endif%}
+          <br />
+          <h4><span> Click Here To Update</span></h4>
+          <br />
+          <div style="text-align: center">
+            <a href="/coOrganizer_event_update/{{data['id']}}"
+              ><button type="button" class="btn btn-primary" id="button1">
+                Update
+              </button></a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br /><br />
+</div>
+<div class="container">
+  {% if data4 %}
+  <div class="table-responsive">
+    <table class="table table-striped table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Participant ID</th>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Phone</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for i in data4 %}
+        <tr>
+          <td>{{i.id}}</td>
+          <td>{{i.name}}</td>
+          <td>{{i.email}}</td>
+          <td>{{i.phone}}</td>
+        </tr>
+        {% endfor %}{% else %}
+        <h2 class="text-center mb-5 fw-bold text-uppercase">
+          No Registrations
+        </h2>
+        {% endif %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

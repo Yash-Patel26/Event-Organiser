@@ -1,0 +1,101 @@
+{% extends "judge_layout.html" %}
+<!--title part-->
+{% block title %}Judge Dashboard{% endblock %}
+<!--head part-->
+{% block head %} {{ super() }}
+<style>
+  body {
+    background: url("static/background2.webp");
+  }
+  #img {
+    height: 250px;
+    border-top-right-radius: 25px;
+  }
+
+  .card-title {
+    text-align: center;
+    font-family: Bahnschrift SemiBold;
+    font-size: 25px;
+  }
+  .card {
+    border-bottom-left-radius: 25px;
+    border-top-right-radius: 25px;
+  }
+
+  @media (min-width: 300px) and (max-width: 350px) {
+    #card1 {
+      margin-top: 20px;
+    }
+  }
+  /*meduim mobile phones*/
+  @media (min-width: 350px) and (max-width: 400px) {
+    #card1 {
+      margin-top: 20px;
+    }
+  }
+  /*large mobile phones*/
+  @media (min-width: 400px) and (max-width: 500px) {
+    #card1 {
+      margin-top: 20px;
+    }
+  }
+  /*tablet*/
+  /*tablet mode*/
+  @media (min-width: 600px) and (max-width: 800px) {
+    .card-title {
+      font-size: 20px;
+    }
+  }
+  @media (min-width: 800px) and (max-width: 1050px) {
+  }
+</style>
+{% endblock %}
+<!--content part-->
+{% block content %}
+<div class="container" style="margin-top: 70px">
+  <div class="row" style="justify-content: center">
+    <div class="col-sm-4">
+      <div class="card animate__animated animate__zoomInLeft" id="card1">
+        <img
+          src="{{url_for('static', filename='face5.png')}}"
+          class="card-img-top"
+          id="img"
+          alt="image1"
+        />
+        <div class="card-body">
+          <h3 class="card-title">
+            <a href="/judge_profile" style="color: black; text-decoration: none"
+              >Profile</a
+            >
+          </h3>
+          <h3
+            style="text-align: center; margin-top: 20px; margin-bottom: 20px"
+          ></h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="card animate__animated animate__zoomInLeft" id="card1">
+        <img
+          src="{{url_for('static', filename='judge_panel.png')}}"
+          class="card-img-top"
+          id="img"
+          alt="image1"
+        />
+        <div class="card-body">
+          <h3 class="card-title">
+            <a href="/judge_event" style="color: black; text-decoration: none"
+              >Judging Panel</a
+            >
+          </h3>
+          <h3
+            style="text-align: center; margin-top: 20px; margin-bottom: 20px"
+          ></h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br /><br />
+
+{% endblock %}

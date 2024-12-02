@@ -1,0 +1,122 @@
+{% extends "coOrganizer_layout.html" %}
+<!--title part-->
+{% block title %}Issue Certificate{% endblock %}
+<!--head part-->
+{% block head %} {{ super() }}
+<style>
+  body {
+    background-image: url("../static/background.avif");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  table {
+    font-family: "Roboto" sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  table tr:nth-child(even) {
+    background-color: #eeeeee;
+  }
+  .table th {
+    padding-top: 14px;
+    padding-bottom: 14px;
+    text-align: left;
+    background-color: #1976d2;
+    color: white;
+    letter-spacing: 0.5px;
+    user-select: none;
+    border-right: 0.5px solid #bbdefb;
+    font-family: Bahnschrift SemiBold;
+  }
+  table td {
+    border-right: 0.5px solid #bbdefb;
+    height: 70px;
+  }
+  table td,
+  table th {
+    border-bottom: 0.5px solid #bbdefb;
+  }
+  table tr:hover {
+    background-color: #e3f2fd;
+    cursor: pointer;
+  }
+  .bttn {
+    background-color: white;
+    color: #edc7b7;
+  }
+
+  .bttn:hover {
+    background-color: #eee2dc;
+    color: #ac3b61;
+  }
+  .col {
+    width: 200px;
+    height: 300px;
+    box-shadow: -1px 0px 10px rgb(225, 224, 224);
+    margin-left: 50px;
+    padding: 0px;
+    background-color: white;
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    flex-wrap: wrap;
+  }
+  #viewBtn {
+    /* margin-top: 20px; */
+    width: 150px;
+    border-radius: 10px;
+    border: 0px;
+    background: url("static/back1.jpg") no-repeat;
+    background-position: center;
+    background-size: cover;
+    color: white;
+    /* margin-bottom: 20px; */
+    text-decoration: none;
+  }
+  #container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+</style>
+{% endblock %}
+<!--content part-->
+{% block content %} {% if data %}
+<div
+  class="row row-cols-md-5 g-2 text-center mx-2"
+  id="container"
+  style="margin-top: 30px"
+>
+  {% for i in data %}
+  <form action="/coOrganizer_sendcertificate/{{i['id']}}" method="POST">
+    <div class="col" style="padding: 0px; margin: 0px">
+      <img
+        src="../static/face.png"
+        height="155px"
+        width="105px"
+        class="card-img-top"
+        alt="candidate_logo"
+      />
+      <div class="card-body">
+        <h5 class="card-title fw-bolder">{{i['name']}}</h5>
+        <p class="card-text fw-bold">{{i['category']}}</p>
+        <div class="text-center">
+          <button class="btn btttn fw-bold" id="viewBtn" type="submit">
+            Send Certificate
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+  {% endfor %}{% else %}
+  <h2 class="text-center mt-5 fw-bold text-uppercase">
+    No Events Assigned To You
+  </h2>
+  {% endif %}
+</div>
+{% endblock %}

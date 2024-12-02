@@ -1,0 +1,79 @@
+{% extends "layout.html" %}
+<!--title part-->
+{% block title %}Judge Forgot Password{% endblock %}
+<!--head part-->
+{% block head %} {{ super() }}
+<style>
+  .card {
+    margin-top: 70px;
+  }
+  #button {
+    margin-top: 20px;
+    width: 170px;
+    border-radius: 50px;
+    background-color: #5e35b1;
+    color: white;
+    margin-bottom: 20px;
+  }
+  #button1 {
+    margin-top: 20px;
+    width: 150px;
+    border-radius: 50px;
+    background-color: #5e35b1;
+    color: white;
+    margin-bottom: 20px;
+  }
+  h4 {
+    font-family: Bahnschrift SemiBold;
+    text-decoration: none;
+    color: #7e57c2;
+    text-align: center;
+    margin-top: 10px;
+  }
+</style>
+{% endblock %}
+<!--content part-->
+{% block content %}
+<div
+  style="
+    background: url('../static/background.avif') no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+  "
+>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-sm-5">
+        <div class="card">
+          <div class="card-body">
+            <h4>Judge Change Password(OTP)</h4>
+            <div class="container">
+              <div class="row justify-content-center">
+                <form method="POST" action="/judge_verify">
+                  <div class="mb-3" style="margin-top: 30px">
+                    <label class="form-label">Enter Your Received OTP</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="judge_otp"
+                      placeholder="Enter OTP"
+                      required
+                    />
+                  </div>
+                  <div class="row justify-content-center">
+                    <button type="submit" id="button1" class="btn btn-primarys">
+                      Submit
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

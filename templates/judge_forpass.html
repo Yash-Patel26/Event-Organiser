@@ -1,0 +1,80 @@
+{% extends "layout.html" %}
+<!--title part-->
+{% block title %}Judge Forgot Password{% endblock %}
+<!--head part-->
+{% block head %} {{ super() }}
+<style>
+  .card {
+    margin-top: 70px;
+  }
+  #button {
+    margin-top: 20px;
+    width: 170px;
+    border-radius: 50px;
+    background: url("static/back1.jpg") no-repeat;
+    background-position: center;
+    background-size: cover;
+    color: white;
+    margin-bottom: 20px;
+  }
+
+  .card-header {
+    background: url("static/back1.jpg") no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 70px;
+    font-family: Bahnschrift SemiBold;
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    font-size: 28px;
+  }
+</style>
+{% endblock %}
+<!--content part-->
+{% block content %}
+<div
+  style="
+    background: url('../static/background.avif') no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+  "
+>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-sm-5">
+        <div class="card">
+          <div class="card-header">
+            <p style="margin-top: 6px">Judge Change Password</p>
+          </div>
+          <div class="card-body">
+            <div class="container">
+              <div class="row justify-content-center">
+                <form method="POST" action="/judge_send_otp">
+                  <div class="mb-3" style="margin-top: 30px">
+                    <label class="form-label">Enter Your Email</label>
+                    <input
+                      type="email"
+                      class="form-control"
+                      name="email"
+                      placeholder="E-mail"
+                      required
+                    />
+                  </div>
+                  <div class="row justify-content-center">
+                    <button type="submit" id="button" class="btn btn-primarys">
+                      Submit
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
